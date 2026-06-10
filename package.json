@@ -1,0 +1,31 @@
+{
+  "name": "tools-by-note-hoard",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Free, private, client-side file tools by Note Hoard. Phase 1: Image Converter.",
+  "scripts": {
+    "gen": "node scripts/gen-pages.mjs",
+    "assets": "node scripts/copy-imgly.mjs",
+    "dev": "npm run gen && npm run assets && vite",
+    "build": "npm run gen && npm run assets && vite build",
+    "preview": "vite preview --port 8080 --host"
+  },
+  "devDependencies": {
+    "vite": "^5.4.21"
+  },
+  "dependencies": {
+    "@fontsource/alegreya": "^5.2.8",
+    "@fontsource/inter": "^5.2.8",
+    "@imgly/background-removal": "1.4.5",
+    "@imgly/background-removal-data": "1.4.5",
+    "@jsquash/avif": "^2.1.1",
+    "@jsquash/oxipng": "^2.3.0",
+    "cropperjs": "^1.6.2",
+    "heic-to": "^1.5.2",
+    "jszip": "^3.10.1",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^6.0.227",
+    "pica": "^10.0.1"
+  }
+}

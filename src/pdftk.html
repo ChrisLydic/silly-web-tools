@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{TITLE}}</title>
+  <meta name="description" content="{{DESCRIPTION}}" />
+  <link rel="canonical" href="{{CANONICAL}}" />
+  <meta name="theme-color" content="#f5fbe2" />
+  <link rel="icon" href="/assets/logo-main.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{TITLE}}" />
+  <meta property="og:description" content="{{DESCRIPTION}}" />
+  <meta property="og:url" content="{{CANONICAL}}" />
+  <meta property="og:image" content="{{OG_IMAGE}}" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="stylesheet" href="/src/styles.css" />
+  <script src="/theme-init.js"></script>
+  {{JSONLD}}
+</head>
+<body data-default-tab="{{TAB}}">
+  <!-- ============================================================ Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/">
+        <img class="brand__logo" src="/assets/logo-main.png" alt="Note Hoard" width="30" height="30" />
+        <span class="brand__name"><span class="by">Tools by</span><span class="nh">Note Hoard</span></span>
+      </a>
+      <div class="header-actions">
+        <nav class="nav-links">
+          <a class="nav__link" href="/">All tools</a>
+          <a class="nav__link" href="https://notehoard.com">Why Note Hoard</a>
+        </nav>
+        <button class="icon-btn theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
+          <svg aria-hidden="true" class="icon sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg aria-hidden="true" class="icon moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+        <a class="btn btn-primary cta-desktop" href="https://notehoard.com">Get Note Hoard</a>
+        <button class="icon-btn hamburger" id="hamburger" aria-label="Menu">
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="/">All tools</a>
+      <a href="https://notehoard.com">Why Note Hoard</a>
+      <a class="btn btn-primary" href="https://notehoard.com">Get Note Hoard</a>
+    </div>
+  </header>
+
+  <!-- ============================================================= Intro -->
+  <section class="intro">
+    <div class="breadcrumb"><a href="/">Tools</a> &nbsp;→&nbsp; {{BREADCRUMB}}</div>
+    <h1>{{H1}}</h1>
+    <p>{{INTRO}}</p>
+    <div class="chips">
+      <span class="chip"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> 100% private</span>
+      <span class="chip"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 2 20 20"/><path d="M5.8 5.8A6 6 0 0 0 9 17h8a4 4 0 0 0 1.6-.3"/><path d="M22 15a4 4 0 0 0-4-4h-1.3a7 7 0 0 0-3.2-4.5"/></svg> No uploads</span>
+      <span class="chip"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg> All in your browser</span>
+    </div>
+  </section>
+
+  <!-- ========================================================= Tool area -->
+  <section class="tool-area">
+    <div class="card">
+      <div class="tooltabs">
+        <button class="tooltab active" id="tab-merge">Merge</button>
+        <button class="tooltab" id="tab-split">Split</button>
+        <button class="tooltab" id="tab-rotate">Rotate</button>
+        <button class="tooltab" id="tab-compress">Compress</button>
+      </div>
+
+      <!-- Merge -->
+      <div class="panel" id="panel-merge">
+        <div class="dropzone-pad">
+          <div class="dropzone" id="mergeDrop" tabindex="0" role="button" aria-label="Add PDFs">
+            <div class="dropzone__icon"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg></div>
+            <div class="dropzone__title">Drop PDFs to merge</div>
+            <div class="dropzone__or">or</div>
+            <span class="btn btn-primary">Browse files</span>
+            <div class="dropzone__formats">Add two or more PDF files</div>
+          </div>
+          <input type="file" id="mergeInput" accept="application/pdf,.pdf" multiple hidden />
+        </div>
+        <div class="pdf-thumbs hidden" id="mergeListWrap">
+          <div class="pdf-thumbs__head"><span class="setting-label">Pages combine in this order — drag-free reorder with the arrows</span></div>
+          <div class="filelist" id="mergeList"></div>
+        </div>
+        <div class="settings"><div class="pdf-actions"><button class="btn btn-primary" id="mergeRun" disabled><svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg><span>Merge &amp; download</span></button></div></div>
+      </div>
+
+      <!-- Split -->
+      <div class="panel hidden" id="panel-split">
+        <div class="dropzone-pad" id="splitDropWrap">
+          <div class="dropzone" id="splitDrop" tabindex="0" role="button" aria-label="Add a PDF">
+            <div class="dropzone__icon"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg></div>
+            <div class="dropzone__title">Drop a PDF to split</div>
+            <div class="dropzone__or">or</div>
+            <span class="btn btn-primary">Browse files</span>
+            <div class="dropzone__formats">One PDF at a time</div>
+          </div>
+          <input type="file" id="splitInput" accept="application/pdf,.pdf" hidden />
+        </div>
+        <div class="pdf-editor hidden" id="splitEditor">
+          <div class="pdf-editor__info" id="splitInfo"></div>
+          <div class="settings settings--col">
+            <div class="setting-row">
+              <div class="setting-group"><span class="setting-label">Pages to extract</span><input class="num num--wide" id="splitRange" type="text" placeholder="e.g. 1-3, 5, 8-10" /></div>
+            </div>
+            <div class="pdf-actions pdf-actions--multi">
+              <button class="btn btn-ghost" id="splitReset">Choose another</button>
+              <button class="btn btn-ghost" id="splitAll">Split into single pages (ZIP)</button>
+              <button class="btn btn-primary" id="splitExtract">Extract pages</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rotate -->
+      <div class="panel hidden" id="panel-rotate">
+        <div class="dropzone-pad" id="rotateDropWrap">
+          <div class="dropzone" id="rotateDrop" tabindex="0" role="button" aria-label="Add a PDF">
+            <div class="dropzone__icon"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg></div>
+            <div class="dropzone__title">Drop a PDF to rotate</div>
+            <div class="dropzone__or">or</div>
+            <span class="btn btn-primary">Browse files</span>
+            <div class="dropzone__formats">One PDF at a time</div>
+          </div>
+          <input type="file" id="rotateInput" accept="application/pdf,.pdf" hidden />
+        </div>
+        <div class="pdf-editor hidden" id="rotateEditor">
+          <div class="pdf-editor__info" id="rotateInfo"></div>
+          <div class="settings settings--col">
+            <div class="setting-row">
+              <div class="setting-group"><span class="setting-label">Rotate by</span>
+                <div class="segmented" id="rotateAngle"><button type="button" data-angle="90" class="active">90°</button><button type="button" data-angle="180">180°</button><button type="button" data-angle="270">270°</button></div>
+              </div>
+              <div class="setting-group"><span class="setting-label">Pages</span><input class="num num--wide" id="rotateRange" type="text" value="all" placeholder="all or 1-3, 5" /></div>
+            </div>
+            <div class="pdf-actions pdf-actions--multi">
+              <button class="btn btn-ghost" id="rotateReset">Choose another</button>
+              <button class="btn btn-primary" id="rotateRun">Rotate &amp; download</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compress -->
+      <div class="panel hidden" id="panel-compress">
+        <div class="dropzone-pad">
+          <div class="dropzone" id="compressDrop" tabindex="0" role="button" aria-label="Add PDFs">
+            <div class="dropzone__icon"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg></div>
+            <div class="dropzone__title">Drop PDFs to compress</div>
+            <div class="dropzone__or">or</div>
+            <span class="btn btn-primary">Browse files</span>
+            <div class="dropzone__formats">One or many PDF files</div>
+          </div>
+          <input type="file" id="compressInput" accept="application/pdf,.pdf" multiple hidden />
+        </div>
+        <div class="settings settings--col">
+          <div class="setting-row">
+            <div class="setting-group"><span class="setting-label">Mode</span>
+              <div class="segmented" id="compressMode"><button type="button" data-mode="lossless" class="active">Lossless</button><button type="button" data-mode="strong">Strong</button></div>
+            </div>
+            <div class="setting-group hidden" id="compressLevelWrap"><span class="setting-label">Level</span>
+              <select id="compressLevel" class="select"><option value="less">Less (better quality)</option><option value="medium" selected>Recommended</option><option value="more">More (smaller)</option></select>
+            </div>
+            <span class="png-note">Strong re-renders pages to images — best for scans; text becomes non-selectable.</span>
+          </div>
+        </div>
+        <div class="pdf-thumbs hidden" id="compressListWrap"><div id="compressList"></div></div>
+        <div class="settings"><div class="pdf-actions"><button class="btn btn-primary" id="compressRun" disabled><svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg><span>Compress</span></button></div></div>
+      </div>
+    </div>
+
+    <div class="reassure">
+      <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      PDFs are processed on your device and never uploaded.
+    </div>
+  </section>
+
+  <!-- ====================================================== How it works -->
+  <section class="section howto">
+    <div class="wrap">
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="step"><div class="step__num">1</div><h3>Choose a tool</h3><p>Merge, split, rotate or compress — pick a tab.</p></div>
+        <div class="step"><div class="step__num">2</div><h3>Add your PDFs</h3><p>Drop files in. Reorder for merge, or pick pages for split and rotate.</p></div>
+        <div class="step"><div class="step__num">3</div><h3>Download</h3><p>Everything runs in your browser — grab your result instantly.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================== FAQ -->
+  <section class="section faq-section">
+    <div class="wrap faq">
+      <h2>Frequently asked questions</h2>
+      {{FAQ}}
+    </div>
+  </section>
+
+  <!-- ============================================================= Promo -->
+  <section class="promo">
+    <div class="promo__band">
+      <div class="promo__text">
+        <div class="promo__eyebrow">
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16Z"/></svg>
+          FROM NOTE HOARD
+        </div>
+        <h2>Liked this? Note Hoard saves the web, not just files.</h2>
+        <p>Turn any link into a smart, searchable note — automatically. Same privacy-first team, same no-nonsense approach.</p>
+      </div>
+      <div class="promo__cta">
+        <a class="btn btn-primary" href="https://notehoard.com">Try Note Hoard free</a>
+        <small>Free • no account needed</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="/">
+            <img class="brand__logo" src="/assets/logo-main.png" alt="Note Hoard" width="30" height="30" />
+            <span class="brand__name"><span class="by">Tools by</span><span class="nh">Note Hoard</span></span>
+          </a>
+          <p>Free, private browser tools. Your files never leave your device.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Tools</h4>
+            <a href="/image-converter">Image Converter</a>
+            <a href="/image-compressor">Image Compressor</a>
+            <a href="/background-remover">Background Remover</a>
+            <a href="/image-resizer">Resize &amp; Crop</a>
+            <a href="/images-to-pdf">Images to PDF</a>
+            <a href="/pdf-toolkit">PDF Toolkit</a>
+          </div>
+          <div class="footer-col">
+            <h4>Note Hoard</h4>
+            <a href="https://notehoard.com">What is Note Hoard</a>
+            <a href="https://notehoard.com">Why it's private</a>
+            <a href="https://notehoard.com">Get the app</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> Note Hoard</span>
+        <span><a href="https://github.com/notehoard/tools-by-note-hoard">Source</a> · 🔒 Everything runs in your browser.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/pdftk.js"></script>
+</body>
+</html>
